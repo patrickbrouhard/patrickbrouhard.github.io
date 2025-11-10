@@ -1,0 +1,21 @@
+# --- Hugo build output ---
+public/
+resources/
+hugo_stats.json
+
+# --- OS-specific ---
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+
+# --- IDE / editor files ---
+.vscode/
+.idea/
+*.swp
+
+
+*.log
+.hugo_build.lock
+*.bak
+*.tmp

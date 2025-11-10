@@ -1,0 +1,7 @@
+{{ $author := .Get 0 | default "" }}
+<figure class="my-6 text-center italic text-lg text-neutral-700 dark:text-neutral-300">
+  <p>❝ {{ .Inner | markdownify }} ❞</p>
+  {{ if $author }}
+  <figcaption class="mt-2 text-sm not-italic font-semibold">— {{ $author }}</figcaption>
+  {{ end }}
+</figure>
