@@ -144,26 +144,65 @@ _Fichier :_ `layouts/partials/hero/background.html`
 
 ### 3. CI/CD avec GitHub Actions
 
-_Fichier :_ `.github/workflows/deploy.yml`
+J’ai mis en place un pipeline d’**intégration** et de **déploiement continu**.  
+À chaque modification poussée sur la branche principale, le workflow :
+
+- construit automatiquement le site statique avec Hugo,
+- génère un artefact optimisé,
+- déploie le site sur GitHub Pages.
+  Ce processus garantit que le site est toujours à jour en production, sans intervention manuelle.
+
+_Extrait du Fichier :_ `.github/workflows/deploy.yml`
 
 ```yaml
-name: Deploy Hugo site to GitHub Pages
-on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-      - name: Build
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+      - name: Build site
         run: hugo --minify
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
 ```
 
-> Ce pipeline assure la génération et le déploiement automatique du site à chaque _push_, garantissant un flux de publication fluide.
+- **Déclencheurs**
+
+  - Se lance automatiquement à chaque `push` sur la branche principale.
+  - Peut aussi être déclenché manuellement via GitHub Actions.
+
+- **Permissions**
+
+  - Donne accès en lecture au contenu du repo.
+  - Autorise l’écriture sur GitHub Pages.
+  - Gère les jetons d’authentification nécessaires.
+
+- **Job 1 : Build**
+
+  - **Checkout** : récupère le code source du dépôt (et les sous-modules si présents).
+  - **Setup Hugo** : installe la dernière version de Hugo (extended).
+  - **Build site** : génère le site statique avec `hugo --minify`.
+  - **Upload artifact** : envoie le dossier `public` (site généré) comme artefact pour le déploiement.
+
+- **Job 2 : Deploy**
+  - Dépend du job **Build** (ne démarre qu’après la construction).
+  - **Déploiement sur GitHub Pages** : publie l’artefact sur GitHub Pages.
+  - Fournit l’URL du site déployé dans l’environnement `github-pages` (`${{ steps.deployment.outputs.page_url }}` est une variable fournie par fournie par l'action officielle `actions/deploy-pages@v4`).
+
+![screenshot github](github-page-action.png "Page 'Actions' sur Github illustrant le déclenchement et l'execution du workflow de façon automatique (on: push)")
 
 ---
 
