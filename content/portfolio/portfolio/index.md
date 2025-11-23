@@ -31,7 +31,7 @@ J'ai choisi **Hugo** pour ce portfolio parce qu'il allie performance, simplicit�
 - une **génération statique ultra-rapide** (quelques millisecondes) ;
 - un **workflow fluide** via une simple commande `hugo server --disableFastRender --noHTTPCache` pour un aperçu instantané dans le navigateur, sans serveurs locaux type WAMPServeur64 et autres solutions lourdes en comparaison.
 - un **contrôle total du contenu** en Markdown, versionné avec Git ;
-- une **grande extensibilité** grâce aux shortcodes et partials.
+- une **grande extensibilité** grâce aux shortcodes, partials, mais aussi du code pur (html, css, js) si on le souhaite.
 
 Le thème **Blowfish**, intégré comme **submodule Git**, offre une base moderne, responsive et accessible, que j’ai adaptée pour mes besoins spécifiques (images, formulaires, configuration).
 

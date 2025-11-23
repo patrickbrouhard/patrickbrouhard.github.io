@@ -36,7 +36,7 @@ Je recherche un cadre stimulant, propice à l’apprentissage continu et à la c
 - 🌐 **CMS :** WordPress, Hugo
 - 🐳 **DevOps & conteneurisation :** Docker, Git, GitHub, Grafana
 - 📐 **Conception :** UML, Merise/2
-- 🧪 **Qualité logicielle :** principes (SOLID, KISS, DRY), tests (unitaires, fonctionnels), analyse (SonarQube for IDE - nouveau now de SonarLint depuis 2022)
+- 🧪 **Qualité logicielle :** principes (SOLID, KISS, DRY), tests (unitaires, fonctionnels), analyse (SonarQube), logging (Serilog)
 - 🖥️ **Virtualisation & systèmes :** VirtualBox, Proxmox
 - 🪟 **Systèmes d’exploitation :** Windows, Ubuntu, Debian
 - 🌐 **Réseaux :** notions d’administration

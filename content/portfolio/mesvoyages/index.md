@@ -10,11 +10,14 @@ draft: false
 
 ## Présentation du projet
 
-Dans le cadre de ma formation, je suis en train de développer **MesVoyages**, une application web réalisée avec le framework **Symfony** destinée à stocker, organiser et présenter des visites personnelles (ville, pays, date, note, avis, images). 
+Dans le cadre de ma formation, j'ai développé **MesVoyages**, une application web réalisée avec le framework **Symfony** destinée à stocker, organiser et présenter des visites personnelles (ville, pays, date, note, avis, images). 
 Le dépôt contient l'ensemble du code applicatif (controllers, entités, formulaires, templates Twig), les migrations Doctrine, des fixtures et des tests unitaires/ fonctionnels.
 
 Ce projet se focalise essentiellement sur l'application des bonnes pratiques de développement backend (ORM, validation, upload d'images, envoi d'e-mails, tests, CI/CD).
 
+[Allez voir le site ici](https://testhebergement.go.yj.fr/mesvoyages/public/)
+
+<br>
 {{< button href="https://github.com/patrickbrouhard/mesvoyages" target="_blank" rel="noopener" >}}
 <svg xmlns="http://www.w3.org/2000/svg" 
      class="w-5 h-5 mr-2 inline-block" 
@@ -44,7 +47,7 @@ Voir sur GitHub
 
 * Fournir une application complète de gestion de contenus (CRUD) centrée sur des visites de voyage.
 * Mettre en œuvre des pratiques robustes : validations côté serveur, gestion d'assets (VichUploader), tests automatisés, et processus de migration.
-* Présenter un projet prêt à être déployé (migrations, configuration, workflows GitHub présents) pour convaincre des recruteurs ou pour servir de base à un portfolio.
+* Présenter un projet prêt à être déployé (migrations, configuration, workflows GitHub présents).
 
 ## Fonctionnalités principales
 
@@ -70,6 +73,7 @@ Voir sur GitHub
 * Bootstrap (front minimal)
 * GitHub Actions (workflows présent dans `.github/workflows`)
 * MySQL / Doctrine DBAL pour la persistance
+* Utilisation de SonarQube pour **analyser la qualité du code et détecter les vulnérabilités**.
 
 ## Compétences démontrées
 
@@ -117,27 +121,38 @@ private ?int $note = null;
 2. **Contrôleur d'accueil — récupération des dernières visites (src/Controller/AccueilController.php)**
 
 ```php
-#[Route('/', name: 'accueil')]
-public function index(): Response {
-    $visites = $this->repository->findAllLasted(2);
-    return $this->render("pages/accueil.html.twig", [
-        'visites' => $visites
-    ]);
-}
+    #[Route('/', name: 'accueil')]
+    public function index() : Response {
+        $visites = $this->repository->findLastByDate(2);
+        return $this->render("pages/accueil.html.twig", [
+            'visites' => $visites
+        ]);
+    }
 ```
 
 *Explication :* logique concise : déléguer les requêtes SQL complexes au repository et garder le controller léger (single responsibility).
-Le contrôleur ici n'a pas besoin de savoir comment la requête est construite, il appelle simplement findAllLasted(2).
+Le contrôleur ici n'a pas besoin de savoir comment la requête est construite, il appelle simplement findLastByDate(2).
 
 3. **Envoi d'email via Symfony Mailer (src/Controller/ContactController.php)**
 
 ```php
-$email = (new Email())
-    ->from($contact->getEmail())
-    ->to('contact@mesvoyages.com')
-    ->subject('Message du site de voyages')
-    ->html($this->renderView('pages/_email.html.twig', ['contact' => $contact]));
-$mailer->send($email);
+    public function sendEmail(MailerInterface $mailer, Contact $contact)
+    {
+        $destination = $this->params->get('contact_email');
+        
+        $email = (new Email())
+            ->from($contact->getEmail())
+            ->to($destination)
+            ->subject('Message du site de voyages')
+            ->html($this->renderView(
+                    'pages/_email.html.twig', [
+                        'contact' => $contact
+                    ]
+            ),'utf-8'
+                    );
+
+        $mailer->send($email);
+    }
 ```
 
 *Explication :* intégration du mailer pour un workflow de contact utilisateur, avec rendu HTML depuis un template Twig.

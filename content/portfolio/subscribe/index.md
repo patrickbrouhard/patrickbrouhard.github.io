@@ -13,6 +13,7 @@ tags:
     "IA",
     "Productivité",
     "Obsidian",
+	"CI/CD",
   ]
 github: "https://github.com/patrickbrouhard/SubScribe"
 draft: false
@@ -87,6 +88,7 @@ D -.-> I["Enregistrement <br>Transcript"]
 - Outils externes : **yt-dlp** (extraction), GitHub Releases API (mises à jour)
 - Packaging : embedding d’assets (`embed.FS`) pour templates
 - Tests unitaires pour parties critiques, gestion de la configuration et logique métier
+- **GitHub Actions** (CI/CD)
 
 ## Compétences démontrées
 
@@ -105,6 +107,7 @@ D -.-> I["Enregistrement <br>Transcript"]
 
 - Conception orientée utilisateur (templates prêts à l’emploi).
 - Automatisation et orchestration (CLI + mode non-interactif).
+- Ecriture de workflows pour déclencher automatiquement les tests et la compilation/release du binary
 - Documentation et packaging pour distribution (README, assets embarqués).
 - Prompt engineering / IA prompting : conception et optimisation du prompt qui résume le transcript
 
@@ -227,6 +230,55 @@ func FetchReleaseJSON(ctx context.Context, owner, repo string) ([]byte, error) {
 ```
 
 _Requête HTTP idiomatique en Go, avec gestion du contexte, contrôle des erreurs et respect du principe de responsabilité unique._
+
+**5) Workflow GA pour compilation/release**
+
+```yaml
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write # Autorise la création/modification de release
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.1"
+
+      - name: Build Windows exe
+        run: go build -o subscribe.exe ./cmd/subscribe
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: subscribe.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+- Déclenchement automatique lors d’un **push de tag `v*`** ou via **workflow manuel**
+- Import du projet (**checkout**) dans la machine virtuelle GitHub Actions
+- **Installation de Go 1.25.1** pour l’environnement de build
+- **Compilation** du binaire Windows `subscribe.exe`
+- **Publication automatique** du binaire dans une **GitHub Release**, prêt à télécharger
+
+Déploiement en deux commandes seulement :
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
 
 ## Résultat du programme
 

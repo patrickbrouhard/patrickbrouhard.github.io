@@ -59,6 +59,8 @@ Voir sur GitHub
 - Base de données : MySQL (phpMyAdmin)
 - Architecture : pattern MVC (WinForms + controllers)
 - Structure : paquetages `bddmanager`, `dal`, `controller`, `model`
+- Serilog pour gérer les logs
+- SonarQube pour **analyser la qualité du code et détecter les vulnérabilités**.
 
 ## Illustrations
 
