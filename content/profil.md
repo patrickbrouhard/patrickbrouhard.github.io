@@ -30,25 +30,34 @@ Je recherche un cadre stimulant, propice à l’apprentissage continu et à la c
 
 ## 🛠️ Compétences
 
-- 🔧 **Langages :** Java, C#, Go, Python, HTML/CSS/JS, PHP (Symfony)
-- 🗄️ **Bases de données :** MySQL, PostgreSQL, MongoDB
-- 💻 **IDEs :** Visual Studio, VS Code, Eclipse, NetBeans, PyCharm
-- 🌐 **CMS :** WordPress, Hugo
-- 🐳 **DevOps & conteneurisation :** Docker, Git, GitHub, Grafana
-- 📐 **Conception :** UML, Merise/2
-- 🧪 **Qualité logicielle :** principes (SOLID, KISS, DRY), tests (unitaires, fonctionnels), analyse (SonarQube), logging (Serilog)
-- 🖥️ **Virtualisation & systèmes :** VirtualBox, Proxmox
-- 🪟 **Systèmes d’exploitation :** Windows, Ubuntu, Debian
-- 🌐 **Réseaux :** notions d’administration
+### **Développement**
 
-### Autres
+* 🔧 **Langages :** Java, C#, Go, Python
+* 🌐 **Frontend :** HTML/CSS/JS, React
+* 🛠️ **Backend, frameworks & CMS :** PHP (Symfony), WordPress, Hugo
+* 🧪 **Qualité logicielle :** SOLID, KISS, DRY, tests (unitaires, fonctionnels), analyse (SonarQube), logging (Serilog)
 
-- 💬 **Langue :** Anglais professionnel courant (TOEIC 950)
-- 🎨 **Multimédia :** Photoshop, GIMP, DaVinci Resolve, Suite Office...
+### **Outils & Écosystème**
+
+* 💻 **IDEs :** Visual Studio, VS Code, Eclipse, NetBeans, PyCharm
+* 🐳 **DevOps & conteneurisation :** Docker, Git, GitHub, Github Actions (tests → build → deploy), Grafana
+* 🗄️ **Bases de données :** MySQL, PostgreSQL, MongoDB
+
+### **Infrastructure & Systèmes**
+
+* 🖥️ **Virtualisation :** VirtualBox, Proxmox
+* 🪟 **Systèmes d’exploitation :** Windows, Ubuntu, Debian
+* 🌐 **Réseaux :** notions d’administration
+
+### **Autres**
+
+* 💬 **Langue :** Anglais professionnel courant (TOEIC 950)
+* 🎨 **Multimédia :** Photoshop, GIMP, DaVinci Resolve, Suite Office
+
 
 ##
 
-{{< button href="/files/CV.pdf" target="_blank" rel="noopener" >}}
+{{< button href="https://drive.google.com/file/d/1G3K-suwzcYgmw2f98eCJALsvCmFbN3J3/view?usp=sharing" target="_blank" rel="noopener" >}}
 <svg xmlns="http://www.w3.org/2000/svg"
      class="w-5 h-5 mr-2 inline-block"
      fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
