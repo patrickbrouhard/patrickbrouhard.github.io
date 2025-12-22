@@ -40,7 +40,7 @@ Je recherche un cadre stimulant, propice à l’apprentissage continu et à la c
 ### **Outils & Écosystème**
 
 * 💻 **IDEs :** Visual Studio, VS Code, Eclipse, NetBeans, PyCharm
-* 🐳 **DevOps & conteneurisation :** Docker, Git, GitHub, Github Actions (tests → build → deploy), Grafana
+* 🐳 **DevOps & conteneurisation :** Docker, Git, GitHub, Github Actions, Grafana, Bash, Terraform, Ansible
 * 🗄️ **Bases de données :** MySQL, PostgreSQL, MongoDB
 
 ### **Infrastructure & Systèmes**
