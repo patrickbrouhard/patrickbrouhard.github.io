@@ -100,7 +100,7 @@ Le **BTS Services Informatiques aux Organisations (SIO)** est un diplôme de niv
 
 ---
 
-👉 En résumé, le BTS SIO SLAM est une formation professionnalisante qui prépare directement aux métiers du **développement logiciel, de la programmation et de la conception d’applications métiers**, avec une solide base en bases de données et en gestion de projet informatique.
+En résumé, le BTS SIO SLAM est une formation professionnalisante qui prépare directement aux métiers du **développement logiciel, de la programmation et de la conception d’applications métiers**, avec une solide base en bases de données et en gestion de projet informatique.
 
 **Sources**
 

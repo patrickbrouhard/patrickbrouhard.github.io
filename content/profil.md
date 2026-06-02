@@ -12,47 +12,55 @@ showDate: false
 showReadingTime: false
 ---
 
-## 👋 À propos de moi
+## À propos de moi
 
-Passionné par la **conception logicielle** et l’univers IT, j’ai choisi de me **reconvertir dans le développement informatique** à travers un BTS Services Informatiques aux Organisations, option **Solutions Logicielles et Applications Métiers**.
+En reconversion vers les métiers de l'informatique, je prépare actuellement un BTS SIO option SLAM (*Solutions Logicielles et Applications Métiers*). 
+Au fil de ce cursus et de mes projets, j'ai développé des compétences en développement logiciel, bases de données et API REST, tout en m'intéressant progressivement à l'automatisation, au déploiement et à l'infrastructure.
 
-J’aime comprendre le fonctionnement des systèmes, concevoir des solutions élégantes et apprendre en continue de nouvelles technologies.
-Je m’épanouis dans les environnements **techniques**, **collaboratifs** et **structurés**, où l’on peut partager ses idées, apprendre des autres et construire des projets qui ont du sens.
+J'aime comprendre le fonctionnement des systèmes dans leur ensemble, concevoir des solutions robustes et faire évoluer mes projets par itérations successives. Cette approche m'a conduit à explorer aussi bien le développement applicatif que des outils tels que Docker, Terraform ou Ansible.
 
----
-
-## 🎯 Objectif professionnel
-
-Je souhaite évoluer vers un poste de **développeur back-end ou full-stack**, au sein d’une équipe qui valorise la **qualité du code**, la **conception réfléchie** et le **partage de bonnes pratiques**.
-Je recherche un cadre stimulant, propice à l’apprentissage continu et à la création de solutions durables.
+Ce qui me plaît dans l'informatique, c'est autant la création que la compréhension : développer une application, automatiser son déploiement, observer son comportement et chercher à comprendre comment les différentes briques s'articulent entre elles. 
+D'une certaine manière, c'est le même état d'esprit qui m'avait déjà poussé, au lycée, à parcourir la documentation de ma TI-89 pour écrire mes premiers programmes.
 
 ---
 
-## 🛠️ Compétences
+## Objectif professionnel
 
-### **Développement**
+Mon objectif est de construire progressivement un profil à l'intersection du développement logiciel backend et de l'infrastructure. Les sujets liés à l'automatisation, au déploiement, à l'observabilité et à l'Infrastructure as Code m'intéressent particulièrement, tout en restant attaché aux fondamentaux du développement.
 
-* 🔧 **Langages :** Java, C#, Go, Python
-* 🌐 **Frontend :** HTML/CSS/JS, React
-* 🛠️ **Backend, frameworks & CMS :** PHP (Symfony), WordPress, Hugo
-* 🧪 **Qualité logicielle :** SOLID, KISS, DRY, tests (unitaires, fonctionnels), analyse (SonarQube), logging (Serilog)
+Je recherche avant tout un environnement qui me permettra d'apprendre, d'expérimenter et de contribuer à des projets techniques variés.
 
-### **Outils & Écosystème**
+---
 
-* 💻 **IDEs :** Visual Studio, VS Code, Eclipse, NetBeans, PyCharm
-* 🐳 **DevOps & conteneurisation :** Docker, Git, GitHub, Github Actions, Grafana, Bash, Terraform, Ansible
+## Compétences
+
+### Développement
+
+* 🔧 **Langages :** C#, PHP, Java, Python, Go
+* 🌐 **Frontend :** HTML/CSS/JavaScript, React
+* 🛠️ **Frameworks & outils :** Symfony, WordPress, Hugo
+* 🧪 **Qualité logicielle :** SOLID, KISS, DRY, tests unitaires et fonctionnels, SonarQube, Serilog
+
+### Données
+
 * 🗄️ **Bases de données :** MySQL, PostgreSQL, MongoDB
+* 📊 **Modélisation & SQL :** Merise, schémas relationnels, requêtes SQL, transactions
 
-### **Infrastructure & Systèmes**
+### Outils & automatisation
+
+* 🔄 **Versioning & collaboration :** Git, GitHub, GitHub Projects
+* 🐳 **DevOps & automatisation :** Docker, GitHub Actions, Terraform, Ansible, Grafana, Bash
+* 💻 **IDEs :** Visual Studio, VS Code, Eclipse, NetBeans, PyCharm, Phpstorm
+
+### Infrastructure & systèmes
 
 * 🖥️ **Virtualisation :** VirtualBox, Proxmox
 * 🪟 **Systèmes d’exploitation :** Windows, Ubuntu, Debian
-* 🌐 **Réseaux :** notions d’administration
+* 🌐 **Réseaux :** notions d’administration, DNS, reverse proxy, SSH
 
-### **Autres**
+### Autres
 
-* 💬 **Langue :** Anglais professionnel courant (TOEIC 950)
-* 🎨 **Multimédia :** Photoshop, GIMP, DaVinci Resolve, Suite Office
+* 💬 **Anglais :** Anglais professionnel courant (TOEIC 950)
 
 
 ##

@@ -7,8 +7,8 @@ description: "Page de garde du site professionnel de Patrick Brouhard"
 
 [📄 Télécharger le CV](/files/CV.pdf){.text-blue-600 .hover:underline} -->
 
-Reconverti dans le **développement logiciel** à travers un **BTS SIO SLAM** (en cours), j’apprends à transformer les idées en outils concrets.  
-Je m’intéresse particulièrement aux architectures applicatives, au développement fullstack moderne et aux pratiques DevOps.
+Reconverti dans le **développement logiciel** à travers un **BTS SIO SLAM** (en cours), j’apprends à transformer les idées en solutions concrètes.
+Mes projets m’amènent à explorer aussi bien le développement logiciel que l’automatisation, l’infrastructure et les pratiques DevOps.
 
 [👤 Profil](/profil) · [💼 Portfolio](/portfolio) · [📄 CV](https://drive.google.com/file/d/1G3K-suwzcYgmw2f98eCJALsvCmFbN3J3/view?usp=sharing)
 
