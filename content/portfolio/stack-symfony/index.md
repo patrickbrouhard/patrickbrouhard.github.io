@@ -20,6 +20,8 @@ cover:
 draft: false
 ---
 
+![Screenshot de Grafana avec des dashboards de monitoring pour la stack Symfony](featured.png "Dashboard Grafana pour le Stack : Monitoring CPU, Mémoire, Réseau.")
+
 ## Présentation
 
 J’ai réalisé ce projet afin de disposer d’un **environnement local reproductible** permettant d’exécuter une application Symfony développée dans le cadre de ma formation BTS SIO SLAM, [MediatekFormation](https://github.com/patrickbrouhard/mediatekformation), mais sans intégrer directement son code dans ce dépôt, afin que l’application puisse évoluer indépendamment dans son propre repository.
@@ -69,12 +71,14 @@ Voir sur GitHub
   - métriques conteneurs (cAdvisor + Prometheus),
   - logs centralisés (Promtail + Loki),
   - visualisation (Grafana) **provisionnée automatiquement**.
-- S'intégrer dans le workflow du [homelab](https://github.com/patrickbrouhard/homelab) afin de pouvoir faire, en "un clic", la création de la VM, le déploiement de la stack, et l’accès à l’application + monitoring. Ce qui ouvre d'ailleurs la possibilité d'avoir un environnement de test jetable.
+- S'intégrer dans le workflow du [homelab](../IaC-Proxmox) afin de pouvoir faire, en "un clic", la création de la VM, le déploiement de la stack, et l'accès à l'application + monitoring. Ce qui ouvre d'ailleurs la possibilité d'avoir un environnement de test jetable.
 
 ### Valeur ajoutée
 -  Un dépôt dédié à l’infrastructure et au déploiement local de l’application.
 - Un workflow d’installation/réinitialisation simplifié via `Makefile`.
 - Un stack monitoring utilisable dès le premier démarrage (datasources + dashboards montés en provisioning).
+
+![Screenshot du dashboard Loki dans Grafana, avec des logs de conteneurs Docker étiquetés automatiquement](loki.png "Dashboard Grafana pour les logs avec Loki : on voit les logs de Nginx, PHP, et en dessous les logs du service sélectionné dans le menu en haut à gauche.")
 
 ---
 
@@ -244,7 +248,7 @@ datasources:
     url: http://loki:3100
 ```
 
-- une approche “config as code” : pas besoin de configurer Grafana à la main, ça marche tout seul.
+- une approche “config as code” : pas besoin de configurer Grafana à la main, ça marche tout seul dès l'installation.
 
 ---
 
@@ -261,7 +265,7 @@ datasources:
 - Reset complet :
   - `make fresh`
 
-Ou bien, dans le cadre du homelab, je peux faire tout ça en “un clic” via un script d’installation qui crée la VM, déploie la stack, et ouvre les accès. Tout celà est piloté à partir d'une VM de contrôle, à laquelle je me connecte en SSH via le terminal.
+Ou bien, dans le cadre du [homelab](../IaC-Proxmox), je peux faire tout ça en “un clic” via un script d’installation qui crée la VM, déploie la stack, et ouvre les accès. Tout celà est piloté à partir d'une VM de contrôle, à laquelle je me connecte en SSH via le terminal.
 
 ---
 
