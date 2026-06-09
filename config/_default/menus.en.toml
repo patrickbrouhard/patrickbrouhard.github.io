@@ -30,6 +30,11 @@ name = "Contact"
 pageRef = "contact"
 weight = 100
 
+[[main]]
+name = "E6"
+pageRef = "e6"
+weight = 110
+
 #[[main]]
 #  name = "Parent"
 #  weight = 20

@@ -1,7 +1,7 @@
 ---
 title: "MediaTekDocuments - client C# + API REST PHP"
 date: 2026-04-26
-summary: "Projet de formation : une application WinForms (C#) qui consomme une API REST PHP pour gérer des documents (livres/DVD/revues), leurs exemplaires, des commandes et des abonnements. Objectif : mieux comprendre une architecture client/serveur, les transactions SQL, l’authentification et un flux build/déploiement."
+summary: "Projet de formation : une application WinForms (C#) qui consomme une API REST PHP pour gérer des documents, exemplaires, commandes et abonnements. Objectif : consolider une architecture client/serveur avec transactions SQL, authentification, logs, packaging, déploiement automatisé et tests API exécutés via GitHub Actions."
 tags:
   [
     "C#",
@@ -15,7 +15,8 @@ tags:
     "DevOps",
     "JSON",
     "Inno Setup",
-    "Serilog"
+    "Serilog",
+    "Postman",
   ]
 cover: "featured.png"
 draft: false
@@ -114,7 +115,8 @@ En pratique : l’app de bureau appelle l’API, l’API exécute SQL (souvent a
 - Messages utilisateur clairs et feedbacks d’erreur dans l’interface (MessageBox).
 - **SonarQube** : analyse de la qualité du code (code smells, bugs potentiels, etc).
 - Tests unitaires MSTest pour la logique métier côté client (ex: `MediaTekDocumentsTests/AccessTests.cs`).
-- Utilisation de **Postman** pour tester les endpoints de l’API de manière isolée.
+- Utilisation de **Postman** pour construire une collection de tests API.
+- Exécution automatisée de cette collection avec **Newman** dans un workflow GitHub Actions déclenché après le déploiement FTP de l’API.
 
 ### UX & fonctionnalités
 
@@ -130,6 +132,29 @@ En pratique : l’app de bureau appelle l’API, l’API exécute SQL (souvent a
 - Configuration "release", afin de pouvoir garder une configuration de développement locale sans avoir à modifier le code.
 
 ![Une version locale, et une version de production](login.png "A gauche, la version locale (dev) avec login prérempli et connexion à la base de données locale, à droite la version de production (release) avec login vide et connexion à la base de données distante).")
+
+### Tests API automatisés après déploiement
+
+J’ai mis en place une collection de tests Postman pour vérifier les échanges possibles entre le client WinForms et l’API.
+
+La collection est structurée pour rester autant que possible idempotente : les scénarios créent des données de test, les modifient, puis les suppriment afin de limiter les effets persistants sur la base de données.
+
+Ces tests sont exécutés automatiquement avec **Newman**, l’outil en ligne de commande de Postman, dans un workflow GitHub Actions déclenché après le workflow de déploiement FTP :
+
+```txt
+Push sur master
+↓
+Déploiement FTP de l’API
+↓
+Exécution des tests API avec Newman
+```
+
+Cette automatisation permet de vérifier que l’API en ligne répond correctement après chaque déploiement.
+
+![Collection de tests Postman](resultat-postman.png "Résultat des tests dans Postman.")
+
+![Résultat des tests depuis Github](resultat-newman-GA.png "Workflow GitHub Actions a exécuté les tests API avec Newman après le déploiement FTP.")
+
 
 ---
 
