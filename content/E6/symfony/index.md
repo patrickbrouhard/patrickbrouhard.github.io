@@ -9,7 +9,7 @@ draft: false
 
 # Mediatek Formation
 
-![Capture d'écran de l'application Symfony Mediatek Formation](featured.png "Capture d'écran du formulaire de création de formation")
+![Capture d'écran de l'application Symfony Mediatek Formation](featured.png "Homepage Mediatek Formation")
 
 ## Liens
 
@@ -39,6 +39,9 @@ Les évolutions apportées au code permettent désormais :
 * de gérer les formations, les playlists et les catégories
 * d’ajouter une authentification administrateur
 * de mettre en place des tests, une documentation et un déploiement continu
+
+![Capture d'écran de l'application Symfony Mediatek Formation](formulaire-new-formation.png "Formulaire de création de formation")
+
 
 ---
 
