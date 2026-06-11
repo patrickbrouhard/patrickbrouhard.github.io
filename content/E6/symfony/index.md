@@ -14,6 +14,7 @@ draft: false
 ## Liens
 
 - Site en ligne : https://testhebergement.go.yj.fr
+- Back office admin : https://testhebergement.go.yj.fr/admin (login : admin / mot de passe : admin)
 - Dépôt GitHub : https://github.com/patrickbrouhard/mediatekformation
 
 ## Contexte
