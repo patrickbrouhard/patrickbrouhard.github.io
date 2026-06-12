@@ -15,6 +15,7 @@ draft: false
 
 * Application C# : https://github.com/patrickbrouhard/mediatekdocuments
 * Installeur de l'application dans [la partie "Releases" du dépôt GitHub](https://github.com/patrickbrouhard/mediatekdocuments/releases)
+    * login/pwd de l'application : root / test (autres logins disponibles : "adm", "pre" et "cul", même pwd)
 * API REST : https://github.com/patrickbrouhard/rest_mediatekdocuments
 * Adresse web de l'API : http://mediatekdocapi.atwebpages.com
 * Page dédiée dans le portfolio hors examen : [MediaTek Documents](/portfolio/mediatek-documents).
