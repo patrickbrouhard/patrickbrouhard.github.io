@@ -35,7 +35,7 @@ J'ai lancé ce projet afin de pouvoir automatiser une partie de mon homelab auto
 Il s'agissait pour moi de découvrir les outils DevOps, faire évoluer mon homelab et aussi préparer un futur projet lié au projet [MediatekDocuments](https://github.com/patrickbrouhard/mediatekdocuments) (le dépôt a d'ailleurs été récemment mis à jour en ce sens). 
 Ce projet me sert de terrain d’expérimentation “réaliste” : des scripts et de l’IaC que je peux relancer, corriger et faire évoluer, en gardant une séparation claire entre **provisionnement** et **configuration**.
 
-{{< button href="https://github.com/patrickbrouhard/homelab" target="_blank" rel="noopener" >}}
+{{< button href="https://github.com/patrickbrouhard/proxmox-web-vm" target="_blank" rel="noopener" >}}
 <svg xmlns="http://www.w3.org/2000/svg" 
      class="w-5 h-5 mr-2 inline-block" 
      fill="currentColor" viewBox="0 0 16 16">
@@ -78,7 +78,7 @@ Voir sur GitHub
 
 ### 1) Création d’un template Proxmox Ubuntu cloud-init (script)
 
-Le script [`scripts/create-proxmox-cloud-template.sh`](https://github.com/patrickbrouhard/homelab/blob/master/scripts/create-proxmox-cloud-template.sh) automatise la création d’un template Proxmox à partir d’une image Ubuntu cloud :
+Le script [`scripts/create-proxmox-cloud-template.sh`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/scripts/create-proxmox-cloud-template.sh) automatise la création d’un template Proxmox à partir d’une image Ubuntu cloud :
 
 - téléchargement + vérification SHA256 ;
 - customization (`virt-customize`) + nettoyage (`virt-sysprep`)
@@ -90,37 +90,37 @@ Dans les deux cas, j'ai retrouvé des concepts classiques en développement logi
 
 ### 2) Provisionnement des VMs via Terraform (Proxmox provider)
 
-Le dossier [`terraform/proxmox/`](https://github.com/patrickbrouhard/homelab/terraform/proxmox) contient la configuration Terraform :
+Le dossier [`terraform/proxmox/`](https://github.com/patrickbrouhard/proxmox-web-vm/terraform/proxmox) contient la configuration Terraform :
 
 - ressource `proxmox_vm_qemu` itérée via `for_each` sur une map `vm_configs`
 - configuration cloud-init (user, réseau, clé SSH), disque, réseau virtio, agent, etc.  
   (fichiers clés : `main.tf`, `variables.tf`, `vms.auto.tfvars`)
 
 Les secrets et paramètres sensibles ne sont pas committés : un exemple est fourni via  
-[`terraform/proxmox/credentials.auto.tfvars.example`](https://github.com/patrickbrouhard/homelab/blob/master/terraform/proxmox/credentials.auto.tfvars.example) (à copier en `credentials.auto.tfvars` local).
+[`terraform/proxmox/credentials.auto.tfvars.example`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/terraform/proxmox/credentials.auto.tfvars.example) (à copier en `credentials.auto.tfvars` local).
 
 ### 3) Génération d’inventaire Ansible depuis Terraform
 
 Terraform génère automatiquement un inventaire Ansible YAML via  
-[`terraform/proxmox/ansible_inventory.tf`](https://github.com/patrickbrouhard/homelab/blob/master/terraform/proxmox/ansible_inventory.tf), ce qui évite de "tenir à la main" l’IP / user de la VM.
+[`terraform/proxmox/ansible_inventory.tf`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/terraform/proxmox/ansible_inventory.tf), ce qui évite de "tenir à la main" l’IP / user de la VM.
 
 Le fichier généré est :  
-[`ansible/inventory/web.generated.yml`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/inventory/web.generated.yml)
+[`ansible/inventory/web.generated.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/inventory/web.generated.yml)
 
 ### 4) Configuration Ansible : bootstrap + Docker + maintenance + notifications
 
 - bootstrap d’une VM cloud-init :  
-  [`ansible/playbooks/bootstrap-linux-cloudinit.yml`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/playbooks/bootstrap-linux-cloudinit.yml)  
+  [`ansible/playbooks/bootstrap-linux-cloudinit.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/playbooks/bootstrap-linux-cloudinit.yml)  
   (attente SSH, attente cloud-init, installation de python3 si nécessaire)
 - installation Docker :  
-  [`ansible/playbooks/web_docker_install.yml`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/playbooks/web_docker_install.yml)  
-  basé sur le rôle [`ansible/roles/docker/`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/roles/docker/tasks/install.yml)
+  [`ansible/playbooks/web_docker_install.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/playbooks/web_docker_install.yml)  
+  basé sur le rôle [`ansible/roles/docker/`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/roles/docker/tasks/install.yml)
 - maintenance Docker “safe by default” :  
-  [`ansible/playbooks/docker_maintenance.yml`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/playbooks/docker_maintenance.yml)  
+  [`ansible/playbooks/docker_maintenance.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/playbooks/docker_maintenance.yml)  
   + rôle docker `tasks/maintenance.yml`
 - notifications Telegram (utile en cas d’échec bootstrap, testable et secret géré via Ansible Vault) :  
-  rôle [`ansible/roles/notify_telegram/`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/roles/notify_telegram/tasks/main.yml)  
-  + playbook de test [`ansible/playbooks/test-role-notify_telegram.yml`](https://github.com/patrickbrouhard/homelab/blob/master/ansible/playbooks/test-role-notify_telegram.yml)
+  rôle [`ansible/roles/notify_telegram/`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/roles/notify_telegram/tasks/main.yml)  
+  + playbook de test [`ansible/playbooks/test-role-notify_telegram.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/ansible/playbooks/test-role-notify_telegram.yml)
 
 ---
 
@@ -255,9 +255,9 @@ Montre une approche prudente côté ops : par défaut on ne fait rien de destruc
 ## CI / sécurité côté dépôt (GitHub Actions)
 
 - Scan de secrets :  
-  workflow [`/.github/workflows/gitleaks.yml`](https://github.com/patrickbrouhard/homelab/blob/master/.github/workflows/gitleaks.yml)
+  workflow [`/.github/workflows/gitleaks.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/.github/workflows/gitleaks.yml)
 - Scan IaC Terraform :  
-  workflow [`/.github/workflows/terrascan.yml`](https://github.com/patrickbrouhard/homelab/blob/master/.github/workflows/terrascan.yml) (en mode `only_warn: true`)
+  workflow [`/.github/workflows/terrascan.yml`](https://github.com/patrickbrouhard/proxmox-web-vm/blob/master/.github/workflows/terrascan.yml) (en mode `only_warn: true`)
 
 Je l’ai gardé volontairement simple : l’objectif est surtout d’avoir un minimum de “feedback automatique” quand je modifie l’IaC ou que je pousse du code.
 
